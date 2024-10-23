@@ -1,0 +1,9 @@
+**/__pycache__/
+.venv/
+.git/
+
+# squirrels files to ignore
+env.yml
+target/
+sqrl_packages/
+logs/

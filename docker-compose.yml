@@ -1,0 +1,20 @@
+services:
+  app:
+    image: linkedin-impressions-app:latest
+    build:
+      context: ./react-linkedin-dashboard/
+      dockerfile: ./Dockerfile
+    depends_on:
+      - backend
+    ports:
+      - "3000:3000"
+  
+  backend:
+    image: linkedin-impressions-backend:latest
+    build:
+      context: ./squirrels_linkedin_impressions/
+      dockerfile: ./Dockerfile
+    ports:
+      - "4465:4465"
+    volumes:
+      - ./squirrels_linkedin_impressions/env.yml:/squirrels/env.yml:ro

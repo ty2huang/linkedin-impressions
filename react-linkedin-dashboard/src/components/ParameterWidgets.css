@@ -1,0 +1,21 @@
+.padded {
+  padding: 8px 20px;
+}
+
+.widget {
+  width: 100%;
+  max-width: 200px;
+  height: 35px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.dropdown-heading {
+  max-height: 33px;
+}
+
+.widget-label {
+  position: relative;
+  padding-bottom: 10px;
+}

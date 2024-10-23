@@ -1,0 +1,9 @@
+.blue-button {
+  background-color: #4285f4;
+  color: white;
+  border: none;
+}
+
+.blue-button:hover {
+  background-color: #3076c5;
+}

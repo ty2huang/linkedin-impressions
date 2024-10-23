@@ -1,0 +1,49 @@
+project_variables:
+  name: linkedin_impressions
+  label: LinkedIn Impressions
+  major_version: 1
+
+
+## Uses SQLAlchemy URLs. More details here: https://docs.sqlalchemy.org/en/latest/core/engines.html
+connections:
+  - name: default
+    credential: motherduck_token
+    url: duckdb:///md:squirrels_analytics_public_db?motherduck_token={password}
+
+
+datasets:
+  - name: num_impressions
+    label: Total Impressions
+    parameters:
+      - post_id
+      - job_title
+      - location
+      - start_date
+
+  - name: user_breakdown
+    label: Post Impressions
+    model: user_breakdown
+    parameters:
+      - post_id
+      - group_by
+      - job_title
+      - location
+      - start_date
+
+
+settings: {}
+
+## Default values for settings:
+#   auth.token.expire_minutes: 30
+#   parameters.cache.size: 1024
+#   parameters.cache.ttl_minutes: 60
+#   datasets.cache.size: 128
+#   datasets.cache.ttl_minutes: 60
+#   dashboards.cache.size: 128
+#   dashboards.cache.ttl_minutes: 60
+#   selection_test_sets.default_name_used: default
+#   connections.default_name_used: default
+#   defaults.federates.materialized: table
+#   in_memory_database: sqlite
+#   seeds.infer_schema: True
+#   seeds.na_values: [NA]
