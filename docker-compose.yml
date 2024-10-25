@@ -1,19 +1,13 @@
 services:
   app:
-    image: linkedin-impressions-app:latest
-    build:
-      context: ./react-linkedin-dashboard/
-      dockerfile: ./Dockerfile
+    image: timhuang95/linkedin-impressions-app:latest
     depends_on:
       - backend
     ports:
-      - "3000:3000"
-  
+      - "80:3000"
+
   backend:
-    image: linkedin-impressions-backend:latest
-    build:
-      context: ./squirrels_linkedin_impressions/
-      dockerfile: ./Dockerfile
+    image: timhuang95/linkedin-impressions-backend:latest
     ports:
       - "4465:4465"
     volumes:

@@ -4,7 +4,8 @@ import { useEffect, useState } from 'react';
 import { TableDataType } from './types/DatasetResponse';
 import { BarChart } from './components/BarChart';
 
-const hostname = 'http://localhost:4465/squirrels-v0';
+const hostname = import.meta.env.DEV ? "localhost" : "54.227.105.184";
+const host = `http://${hostname}:4465/squirrels-v0`;
 
 function App() {
   
@@ -18,7 +19,7 @@ function App() {
         }
     }
 
-    const url =  `${hostname}/linkedin-impressions/v1/dataset/user-breakdown?${queryParams.toString()}`;
+    const url =  `${host}/linkedin-impressions/v1/dataset/user-breakdown?${queryParams.toString()}`;
     const response = await fetch(url);
     const data = await response.json();
     setTableData(data as TableDataType);
@@ -31,7 +32,7 @@ function App() {
   return (
     <div className="App" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
       <h2 style={{ margin: '10px' }}>LinkedIn Post Viewers Demographics</h2>
-      <ParameterPanel host={hostname} updateTableData={updateTableData} />
+      <ParameterPanel host={host} updateTableData={updateTableData} />
       <BarChart tableData={tableData} />
     </div>
   );
