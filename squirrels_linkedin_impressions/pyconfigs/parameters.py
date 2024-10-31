@@ -25,6 +25,6 @@ def main(sqrl: ParametersArgs) -> None:
     p.MultiSelectParameter.CreateFromSource("location", "Locations", cities_ds)
 
     ## Start date parameter
-    max_date = date(2024, 10, 14)
-    default_start_date = max_date - timedelta(days=14)
+    max_date = date(2024, 10, 28)
+    default_start_date = max_date - timedelta(days=28)
     p.DateParameter.CreateSimple("start_date", "Start Date", default_start_date, min_date=default_start_date, max_date=max_date)

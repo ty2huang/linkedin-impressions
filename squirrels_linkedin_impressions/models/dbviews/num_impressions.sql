@@ -1,25 +1,25 @@
 WITH
-filtered_impressions AS (
+latest_impression_per_user AS (
 
-    {{ cte_filtered_impressions() | indent(4) }}
+    {{ cte_latest_impression_per_user() | indent(4) }}
 
 ),
 total_impressions AS (
 
     SELECT COUNT(*) AS num_impressions
     
-    FROM filtered_impressions
+    FROM latest_impression_per_user
 
 ),
 total_users AS (
     
     SELECT COUNT(DISTINCT user_id) AS num_users
     
-    FROM filtered_impressions
+    FROM latest_impression_per_user
 
 )
 SELECT
     num_impressions,
-    num_users,
+    num_users
 
 FROM total_impressions, total_users

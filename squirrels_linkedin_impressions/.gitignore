@@ -10,3 +10,4 @@ env.yml
 logs/
 target/
 sqrl_packages/
+assets/
