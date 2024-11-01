@@ -8,14 +8,13 @@ project_variables:
 connections:
   - name: default
     credential: motherduck_token
-    url: duckdb:///md:squirrels_analytics_public_db?motherduck_token={password}
+    url: {{ env_vars.duckdb_conn_str }}
 
 
 datasets:
   - name: num_impressions
     label: Total Impressions
     parameters:
-      - post_id
       - job_title
       - location
       - start_date
@@ -24,7 +23,6 @@ datasets:
     label: Post Impressions
     model: user_breakdown
     parameters:
-      - post_id
       - group_by
       - job_title
       - location

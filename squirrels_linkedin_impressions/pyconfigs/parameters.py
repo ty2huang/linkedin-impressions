@@ -3,9 +3,6 @@ from datetime import date, timedelta
 
 
 def main(sqrl: ParametersArgs) -> None:
-    ## Post ID parameter
-    p.TextParameter.CreateSimple("post_id", "Post ID", default_text="P0001")
-
     ## Group by parameter
     group_by_options = [
         po.SelectParameterOption("company_size", "Company Size", column="num_employees", join_with="companies"),

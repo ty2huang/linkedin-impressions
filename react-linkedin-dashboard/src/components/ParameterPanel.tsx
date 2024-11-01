@@ -5,6 +5,7 @@ import './ParameterPanel.css';
 
 interface ParameterPanelProps {
   host: string;
+  executionTime: number;
   updateTableData: (x: Map<string, string[]>) => void;
 }
 
@@ -14,7 +15,7 @@ async function fetchParameters(host: string, setParametersData: (x: ParametersRe
   setParametersData(data as ParametersResponse);
 }
 
-export function ParameterPanel({ host, updateTableData }: ParameterPanelProps) {
+export function ParameterPanel({ host, executionTime, updateTableData }: ParameterPanelProps) {
   const paramSelections = useRef(new Map<string, string[]>());
   
   const [parametersData, setParametersData] = useState<ParametersResponse | null>(null);
@@ -22,6 +23,7 @@ export function ParameterPanel({ host, updateTableData }: ParameterPanelProps) {
   const [jobTitleParam, setJobTitleParam] = useState<MultiSelectParameterType | null>(null);
   const [locationParam, setLocationParam] = useState<MultiSelectParameterType | null>(null);
   const [startDateParam, setStartDateParam] = useState<DateParameterType | null>(null);
+  const [isApiLoading, setIsApiLoading] = useState(false);
 
   function handleChange(name: string | undefined, value: string[]) {
     if (name) {
@@ -52,6 +54,12 @@ export function ParameterPanel({ host, updateTableData }: ParameterPanelProps) {
     }
   }, [parametersData]);
 
+  const handleApply = async () => {
+    setIsApiLoading(true);
+    await updateTableData(paramSelections.current);
+    setIsApiLoading(false);
+  };
+
   return (
     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', width: '100%', padding: '20px' }}>
       <div style={{
@@ -67,8 +75,12 @@ export function ParameterPanel({ host, updateTableData }: ParameterPanelProps) {
       </div>
       <input type="submit" value="Apply" className="blue-button widget" 
         style={{ margin: '20px' }}
-        onClick={() => updateTableData(paramSelections.current)}  
+        onClick={handleApply}  
       />
+      {isApiLoading ? 
+        <div>Execution in progress...</div> :
+        <div>API execution time: {executionTime.toFixed(0)} ms</div>
+      }
     </div>
   );
 }

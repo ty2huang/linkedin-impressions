@@ -10,14 +10,12 @@ latest_impression_by_user AS (
 
     FROM impressions AS a
 
-    WHERE a.post_id = $post_id
-        AND a.date >= strptime({{ ctx.start_date }}, '%Y-%m-%d')
+    WHERE a.date >= strptime({{ ctx.start_date }}, '%Y-%m-%d')
 
     GROUP BY a.post_id, a.user_id
     
 )
 SELECT
-    a.post_id,
     a.date,
     a.user_id,
     b.company_id,

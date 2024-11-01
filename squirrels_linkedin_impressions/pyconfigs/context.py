@@ -4,12 +4,6 @@ from squirrels import ContextArgs, parameters as p
 
 def main(ctx: dict[str, Any], sqrl: ContextArgs) -> None:
 
-    if sqrl.param_exists("post_id"):
-        post_id_param = sqrl.prms["post_id"]
-        assert isinstance(post_id_param, p.TextParameter)
-
-        sqrl.set_placeholder("post_id", post_id_param.get_entered_text())
-    
     if sqrl.param_exists("group_by"):
         group_by_param = sqrl.prms["group_by"]
         assert isinstance(group_by_param, p.SingleSelectParameter)
