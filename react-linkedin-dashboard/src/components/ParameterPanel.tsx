@@ -23,7 +23,6 @@ export function ParameterPanel({ host, executionTime, updateTableData }: Paramet
   const [jobTitleParam, setJobTitleParam] = useState<MultiSelectParameterType | null>(null);
   const [locationParam, setLocationParam] = useState<MultiSelectParameterType | null>(null);
   const [startDateParam, setStartDateParam] = useState<DateParameterType | null>(null);
-  const [isApiLoading, setIsApiLoading] = useState(false);
 
   function handleChange(name: string | undefined, value: string[]) {
     if (name) {
@@ -55,9 +54,7 @@ export function ParameterPanel({ host, executionTime, updateTableData }: Paramet
   }, [parametersData]);
 
   const handleApply = async () => {
-    setIsApiLoading(true);
     await updateTableData(paramSelections.current);
-    setIsApiLoading(false);
   };
 
   return (
@@ -77,9 +74,9 @@ export function ParameterPanel({ host, executionTime, updateTableData }: Paramet
         style={{ margin: '20px' }}
         onClick={handleApply}  
       />
-      {isApiLoading ? 
-        <div>Execution in progress...</div> :
-        <div>API execution time: {executionTime.toFixed(0)} ms</div>
+      {executionTime ? 
+        <div>API execution time: {executionTime.toFixed(0)} ms</div> :
+        <div>Execution in progress...</div>
       }
     </div>
   );
