@@ -6,7 +6,7 @@ latest_impression_by_user AS (
     SELECT
         a.post_id,
         a.user_id,
-        MAX(a.date) AS date,
+        MAX(a.date) AS date
 
     FROM impressions AS a
 

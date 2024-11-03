@@ -1,5 +1,5 @@
 from datetime import date, timedelta
-import pandas as pd
+import pandas as pd, numpy as np
 import random
 
 num_users = 500_000
@@ -53,12 +53,23 @@ def generate_impressions_data(start_date: date, end_date: date):
     }
     return pd.DataFrame(impressions_data).sort_values(["post_id", "date"])
 
+def add_fake_columns(input_df, *, num_new_columns=100):
+    output_df = pd.DataFrame(input_df)
+
+    # Generate 100 fake columns with random data
+    for i in range(num_new_columns):
+        column_name = f'fake_metric_{i+1}'
+        # Generate random values between 0 and 1000
+        output_df[column_name] = np.random.randint(0, 1000, size=len(output_df))
+    
+    return output_df
+
 # Generate datasets
-company_df = generate_company_data()
-company_df.to_csv("companies.csv", index=False)
+company_df = add_fake_columns(generate_company_data())
+company_df.to_csv("companies_enlarged.csv", index=False)
 
-user_df = generate_user_data()
-user_df.to_csv("users.csv", index=False)
+user_df = add_fake_columns(generate_user_data())
+user_df.to_csv("users_enlarged.csv", index=False)
 
-impressions_df = generate_impressions_data(date(2024,9,30), date(2024,10,28))
-impressions_df.to_csv("impressions.csv", index=False)
+impressions_df = add_fake_columns(generate_impressions_data(date(2024,9,30), date(2024,10,28)), num_new_columns=10)
+impressions_df.to_csv("impressions_enlarged.csv", index=False)

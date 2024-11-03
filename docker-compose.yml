@@ -10,5 +10,3 @@ services:
     image: timhuang95/linkedin-impressions-backend:v2024.1
     ports:
       - "4465:4465"
-    volumes:
-      - ./squirrels_linkedin_impressions/env.yml:/squirrels/env.yml:ro

@@ -1,8 +1,0 @@
-credentials:
-  motherduck_token:
-    username: ""
-    password: ""
-
-env_vars:
-  md_conn_str: duckdb:///md:squirrels_analytics_public_db?motherduck_token={password} 
-  duckdb_conn_str: duckdb:///{project_path}/assets/linkedin.db

@@ -2,6 +2,9 @@
 .venv/
 .git/
 
+assets/*
+!assets/linkedin.duckdb
+
 # squirrels files to ignore
 env.yml
 target/

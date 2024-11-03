@@ -7,7 +7,7 @@ project_variables:
 ## Uses SQLAlchemy URLs. More details here: https://docs.sqlalchemy.org/en/latest/core/engines.html
 connections:
   - name: default
-    url: {{ env_vars.duckdb_conn_str }}
+    url: duckdb:///{project_path}/assets/linkedin.duckdb
 
 
 datasets:
